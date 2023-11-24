@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
 """Defines the State class."""
 import models
 from os import getenv
@@ -12,7 +11,8 @@ from sqlalchemy.orm import relationship
 
 
 class State(BaseModel, Base):
-   __tablename__ = "states"
+    """Represents a state for a MySQL database."""
+    __tablename__ = "states"
     name = Column(String(128), nullable=False)
     cities = relationship("City",  backref="state", cascade="delete")
 
@@ -24,4 +24,4 @@ class State(BaseModel, Base):
             for city in list(models.storage.all(City).values()):
                 if city.state_id == self.id:
                     city_list.append(city)
-            return city_list 
+            return city_list
